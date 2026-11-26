@@ -62,6 +62,98 @@ body {
     linear-gradient(90deg, rgb(0, 255, 250), rgb(240, 240, 240));
 }
 
+.love-decorations {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.butterfly,
+.floating-heart {
+  position: absolute;
+  display: block;
+  user-select: none;
+  will-change: transform;
+}
+
+.butterfly {
+  left: var(--x);
+  top: var(--y);
+  font-size: clamp(1.3rem, 2.4vmin, 2rem);
+  filter: drop-shadow(0 0 0.6vmin rgba(255, 186, 239, 0.75));
+  animation: butterfly-flight var(--duration) ease-in-out var(--delay) infinite;
+}
+
+.butterfly--1 { --x: 24%; --y: 36%; --duration: 5.2s; --delay: -1s; }
+.butterfly--2 { --x: 72%; --y: 27%; --duration: 6s; --delay: -3s; }
+.butterfly--3 { --x: 34%; --y: 19%; --duration: 5.7s; --delay: -2s; }
+.butterfly--4 { --x: 63%; --y: 46%; --duration: 6.4s; --delay: -4s; }
+.butterfly--5 { --x: 18%; --y: 57%; --duration: 5.5s; --delay: -2.5s; }
+.butterfly--6 { --x: 80%; --y: 58%; --duration: 6.2s; --delay: -1.5s; }
+.butterfly--7 { --x: 43%; --y: 30%; --duration: 5.9s; --delay: -3.5s; }
+.butterfly--8 { --x: 56%; --y: 64%; --duration: 6.6s; --delay: -0.5s; }
+
+.floating-heart {
+  left: var(--x);
+  top: var(--y);
+  font-size: clamp(0.9rem, 1.8vmin, 1.4rem);
+  opacity: 0.85;
+  animation: heart-drift var(--duration) ease-in-out var(--delay) infinite;
+}
+
+.floating-heart--1 { --x: 30%; --y: 48%; --duration: 4.8s; --delay: -1s; }
+.floating-heart--2 { --x: 68%; --y: 36%; --duration: 5.3s; --delay: -2.5s; }
+.floating-heart--3 { --x: 39%; --y: 25%; --duration: 5s; --delay: -3s; }
+.floating-heart--4 { --x: 58%; --y: 53%; --duration: 5.6s; --delay: -0.8s; }
+.floating-heart--5 { --x: 20%; --y: 43%; --duration: 4.9s; --delay: -2s; }
+.floating-heart--6 { --x: 76%; --y: 48%; --duration: 5.5s; --delay: -3.5s; }
+.floating-heart--7 { --x: 47%; --y: 17%; --duration: 5.2s; --delay: -1.8s; }
+.floating-heart--8 { --x: 62%; --y: 62%; --duration: 5.8s; --delay: -4s; }
+
+.watermark {
+  position: fixed;
+  right: 1rem;
+  bottom: 0.75rem;
+  z-index: 30;
+  color: rgba(255, 255, 255, 0.68);
+  font: 600 clamp(0.65rem, 1.5vmin, 0.9rem) sans-serif;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 0.6rem rgba(255, 110, 201, 0.8);
+  pointer-events: none;
+}
+
+@keyframes butterfly-flight {
+  0% {
+    opacity: 0;
+    transform: translate(0, 8vh) rotate(-10deg) scale(0.75);
+  }
+  12% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+    transform: translate(2.5vmin, -30vh) rotate(12deg) scale(1.08);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-1vmin, -45vh) rotate(-8deg) scale(0.8);
+  }
+}
+
+@keyframes heart-drift {
+  0%, 100% { transform: translateY(0) scale(0.9); }
+  50% { transform: translate(1vmin, -2.5vmin) scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .butterfly,
+  .floating-heart {
+    animation: none;
+  }
+}
+
 .flowers {
   position: relative;
   transform: scale(0.9);
